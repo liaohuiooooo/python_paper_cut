@@ -2,12 +2,12 @@ from aircv import find_template, imread
 from PIL import Image, ImageEnhance
 
 img_src = \
-    '/resource/origin.jpeg'
+    'resource/text2image.jpg'
 img_obj = \
-    'resource/text_image.jpg'
+    'resource/text2image_sub.jpg'
 
 out_img_name = \
-    'resource/output.png'
+    'resource/output_locating.png'
 
 
 def matchImg(imgsrc, imgobj, confidence=0.2):

@@ -8,7 +8,7 @@ path = 'resource/text2image.jpg'
 pygame.init()
 
 # 待转换文字
-text = u' This is a test for font to image. '
+text = u' This '
 
 # 设置字体和字号
 font = pygame.font.SysFont("Ubuntu", 60)
