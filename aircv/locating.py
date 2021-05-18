@@ -1,6 +1,14 @@
 from aircv import find_template, imread
 from PIL import Image, ImageEnhance
 
+img_src = \
+    '/resource/origin.jpeg'
+img_obj = \
+    'resource/text_image.jpg'
+
+out_img_name = \
+    'resource/output.png'
+
 
 def matchImg(imgsrc, imgobj, confidence=0.2):
     """
@@ -36,10 +44,6 @@ def cutImg(imgsrc: object, out_img_name: object, coordinate: object) -> object:
     region.save(out_img_name)
 
 
-img_src = \
-    '/home/liaohuiooooo/PycharmProjects/python_papercut/aircv/resource/origin.jpeg'
-img_obj = \
-    '/home/liaohuiooooo/PycharmProjects/python_papercut/aircv/resource/text_image.jpg'
 
 pos = matchImg(img_src, img_obj)
 
@@ -50,8 +54,6 @@ message = str(pos)
 with open("位置识别结果.txt", 'w') as f:
     f.write(message)
 
-out_img_name = \
-    '/home/liaohuiooooo/PycharmProjects/python_papercut/aircv/resource/output.png'
 
 left_position = pos['rectangle'][0]
 right_position = pos['rectangle'][3]
