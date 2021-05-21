@@ -120,16 +120,16 @@ def predict(modelpath, imgData):
 
 if __name__ == '__main__':
     # 综合测试
-    # path = 'test1.png'
-    path = '1.jpeg'
-    # border = findBorderContours(path)
-    # showResults(path,border)
 
-    model = 'my_mnist_model.h5'
-    borders = findBorderContours(path)
-    imgData = transMNIST(path, borders)
-    results = predict(model, imgData)
-    showResults(path, borders, results)
+    path = 'digital_number.png'
+    border = findBorderContours(path)
+    showResults(path,border)
+
+    # model = 'my_mnist_model.h5'
+    # borders = findBorderContours(path)
+    # imgData = transMNIST(path, borders)
+    # results = predict(model, imgData)
+    # showResults(path, borders, results)
 
 
     # # 测试代码 accesspiexl

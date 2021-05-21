@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+
 # 反相灰度图，将黑白阈值颠倒
 def accessPiexl(img):
     height = img.shape[0]
@@ -19,22 +20,21 @@ def accessBinary(img, threshold=128):
     img = accessPiexl(img)
     # 边缘膨胀，不加也可以
     kernel = np.ones((3, 3), np.uint8)
-    img = cv2.dilate(img, kernel, iterations=2)
-    _, img = cv2.threshold(img, threshold, 0, cv2.THRESH_TOZERO )
+    img = cv2.dilate(img, kernel, iterations=1)
+    _, img = cv2.threshold(img, threshold, 0, cv2.THRESH_TOZERO)
     return img
 
 
-path = 'u=1102118972,143078013&fm=30&app=106&f=JPEG.jpeg'
-
+path = '1.jpg'
 
 img = cv2.imread(path)
-cv2.imshow('origin',img)
+# cv2.imshow('origin', img)
 # img = accessBinary(img)
+#
 # cv2.imshow('accessBinary', img)
-# cv2.imshow('test',test)
 # cv2.imwrite("output.png", img)
 
 img = accessBinary(img)
-cv2.imshow('acccessPiexl',img)
-
+cv2.imshow('acccessPiexl', img)
+cv2.imwrite("output.png", img)
 cv2.waitKey(0)

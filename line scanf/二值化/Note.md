@@ -15,4 +15,12 @@
 > 
 
 
+## cv2.dilate(src,kernal,iteration)
+
+参数说明: src表示输入的图片， kernel表示方框的大小， iteration表示迭代的次数
+
+膨胀操作原理：存在一个kernel，在图像上进行从左到右，从上到下的平移，如果方框中存在白色，那么这个方框内所有的颜色都是白色
+
+
+## cv2.threshold()函数
 
