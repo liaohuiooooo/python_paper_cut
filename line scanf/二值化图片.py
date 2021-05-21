@@ -12,6 +12,9 @@ def accessPiexl(img):
 
 
 # 反相二值化图像
+# 图像二值化（ Image Binarization）
+# 就是将图像上的像素点的灰度值设置为0或255，
+# 也就是将整个图像呈现出明显的黑白效果的过程。
 def accessBinary(img, threshold=128):
     img = accessPiexl(img)
     # 边缘膨胀，不加也可以
@@ -21,11 +24,17 @@ def accessBinary(img, threshold=128):
     return img
 
 
-path = 'test1.png'
-img = cv2.imread(path, 0)
+path = 'u=1102118972,143078013&fm=30&app=106&f=JPEG.jpeg'
+
+
+img = cv2.imread(path)
+cv2.imshow('origin',img)
+# img = accessBinary(img)
+# cv2.imshow('accessBinary', img)
+# cv2.imshow('test',test)
+# cv2.imwrite("output.png", img)
 
 img = accessBinary(img)
+cv2.imshow('acccessPiexl',img)
 
-cv2.imshow('accessBinary', img)
-cv2.imwrite("output.png", img)
 cv2.waitKey(0)
