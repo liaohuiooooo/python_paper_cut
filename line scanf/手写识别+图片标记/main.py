@@ -3,14 +3,16 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 # 反相灰度图，将黑白阈值颠倒
 def accessPiexl(img):
     height = img.shape[0]
     width = img.shape[1]
     for i in range(height):
-       for j in range(width):
-           img[i][j] = 255 - img[i][j]
+        for j in range(width):
+            img[i][j] = 255 - img[i][j]
     return img
+
 
 # 反相二值化图像
 def accessBinary(img, threshold=128):
@@ -44,6 +46,7 @@ def extractPeek(array_vals, min_vals=100, min_rect=200):
             extrackPoints.remove(point)
     return extrackPoints
 
+
 # 寻找边缘，返回边框的左上角和右下角（利用直方图寻找边缘算法（需行对齐））
 def findBorderHistogram(path):
     borders = []
@@ -62,17 +65,18 @@ def findBorderHistogram(path):
             borders.append(border)
     return borders
 
+
 # 寻找边缘，返回边框的左上角和右下角（利用cv2.findContours）
 def findBorderContours(path, maxArea=50):
     img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
     img = accessBinary(img)
-    contours, _= cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    contours, _ = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     borders = []
     for contour in contours:
         # 将边缘拟合成一个边框
         x, y, w, h = cv2.boundingRect(contour)
-        if w*h > maxArea:
-            border = [(x, y), (x+w, y+h)]
+        if w * h > maxArea:
+            border = [(x, y), (x + w, y + h)]
             borders.append(border)
     return borders
 
@@ -86,10 +90,11 @@ def showResults(path, borders, results=None):
         cv2.rectangle(img, border[0], border[1], (0, 0, 255))
         if results:
             cv2.putText(img, str(results[i]), border[0], cv2.FONT_HERSHEY_COMPLEX, 0.8, (0, 255, 0), 1)
-        #cv2.circle(img, border[0], 1, (0, 255, 0), 0)
+        # cv2.circle(img, border[0], 1, (0, 255, 0), 0)
     cv2.imshow('test.png', img)
     cv2.imwrite('output.png', img)
     cv2.waitKey(0)
+
 
 # 根据边框转换为MNIST格式
 def transMNIST(path, borders, size=(28, 28)):
@@ -106,6 +111,7 @@ def transMNIST(path, borders, size=(28, 28)):
         imgData[i] = targetImg
     return imgData
 
+
 # 预测手写数字
 def predict(modelpath, imgData):
     from keras import models
@@ -118,19 +124,19 @@ def predict(modelpath, imgData):
         result_number.append(np.argmax(result))
     return result_number
 
+
 if __name__ == '__main__':
     # 综合测试
 
-    path = 'digital_number.png'
+    path = 'obj.jpg'
     border = findBorderContours(path)
-    showResults(path,border)
+    showResults(path, border)
 
     # model = 'my_mnist_model.h5'
     # borders = findBorderContours(path)
     # imgData = transMNIST(path, borders)
     # results = predict(model, imgData)
     # showResults(path, borders, results)
-
 
     # # 测试代码 accesspiexl
     # path = 'test2.jpg'

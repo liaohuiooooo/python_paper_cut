@@ -25,7 +25,7 @@ def accessBinary(img, threshold=128):
     return img
 
 
-path = '1.jpg'
+path = 'page.png'
 
 img = cv2.imread(path)
 # cv2.imshow('origin', img)
@@ -35,6 +35,6 @@ img = cv2.imread(path)
 # cv2.imwrite("output.png", img)
 
 img = accessBinary(img)
-cv2.imshow('acccessPiexl', img)
+cv2.imshow('origin', img)
 cv2.imwrite("output.png", img)
 cv2.waitKey(0)
